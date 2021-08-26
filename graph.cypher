@@ -28,12 +28,13 @@ CREATE CONSTRAINT tag_title_unique ON (t:Tag) ASSERT t.title IS UNIQUE
 
 // Problem nodes
 CREATE (two_sum:Problem {title: "Two Sum", description: "", link: ""})
-
+CREATE (kth_largest_element_in_an_array:Problem {title: "Kth Largest Element in an Array", description: "", link: "https://leetcode.com/problems/kth-largest-element-in-an-array/"})
 
 // Tag nodes
 CREATE (hash_table:Tag {title: "Hash Table"})
 CREATE (backtracking:Tag {title: 'Backtracking'})
-
+CREATE (quick_select:Tag {title: 'Quickselect'})
+CREATE (priority_queue:Tag {title: 'Priority Queue'})
 
 // Tag problems relationship
 MATCH (ts:Problem {title: "Two Sum"})
@@ -42,6 +43,14 @@ CREATE (ts) - [rel:IS_TAGGED_WITH] -> (ht)
 
 MATCH (p:Problem {title: "Word Search"})
 MATCH (t:Tag {title: "Backtracking"})
+CREATE (p) - [rel:IS_TAGGED_WITH] -> (t)
+
+MATCH (p:Problem {title: "Kth Largest Element in an Array"})
+MATCH (t:Tag {title: "Priority Queue"})
+CREATE (p) - [rel:IS_TAGGED_WITH] -> (t)
+
+MATCH (p:Problem {title: "Kth Largest Element in an Array"})
+MATCH (t:Tag {title: "Quickselect"})
 CREATE (p) - [rel:IS_TAGGED_WITH] -> (t)
 
 // Problem follow up problems relationship
